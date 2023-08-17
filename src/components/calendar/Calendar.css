@@ -1,0 +1,25 @@
+.current-selected-date {
+  font-weight: bold;
+}
+
+.other-month-date {
+  color: var(--grey);
+}
+
+.current-month-date {
+  color: black;
+}
+
+.date-has-meeting > div {
+  position: relative;
+}
+
+.date-has-meeting > div::after {
+  content: "";
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: black;
+  bottom: 10px;
+}
