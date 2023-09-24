@@ -19,6 +19,20 @@ const monthsOfYear = [
   "Dec",
 ];
 
+const monthColors: { [key: string]: string } = {
+  Jan: "linear-gradient(180deg, #7a7a7a, #ffffff , var(--c3))", // January (Winter)
+  Feb: "linear-gradient(180deg, #ff66b2, #ffffff , var(--c3))", // February (Valentine's Day)
+  Mar: "linear-gradient(180deg, #66ffaa, #ffffff , var(--c3))", // March (St. Patrick's Day)
+  Apr: "linear-gradient(180deg, #ffb266, #ffffff , var(--c3))", // April (Spring)
+  May: "linear-gradient(180deg, #fffc00, #ffffff , var(--c3))", // May (Sunshine)
+  Jun: "linear-gradient(180deg, #ff4d4d, #ffffff , var(--c3))", // June (Summer)
+  Jul: "linear-gradient(180deg, #ffad33, #ffffff , var(--c3))", // July (Beach)
+  Aug: "linear-gradient(180deg, #33cc33, #ffffff , var(--c3))", // August (Nature)
+  Sep: "linear-gradient(180deg, #6666ff, #ffffff , var(--c3))", // September (Back to School)
+  Oct: "linear-gradient(180deg, #ff8533, #ffffff , var(--c3))", // October (Halloween)
+  Nov: "linear-gradient(180deg, #b266ff, #ffffff , var(--c3))", // November (Autumn)
+  Dec: "linear-gradient(180deg, #80ff80, #ffffff , var(--c3))", // December (Christmas)
+};
 const getPreviousMonth = (currMonth: number) => {
   return currMonth === 0 ? 11 : currMonth - 1;
 };
@@ -28,7 +42,7 @@ const getNextMonth = (currMonth: number) => {
 };
 
 function App() {
-  const [currDate, setCurrDate] = useState<any>(new Date());
+  const [currDate, setCurrDate] = useState<Date>(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   useEffect(() => {
@@ -55,12 +69,42 @@ function App() {
     setSelectedDate(date);
   };
 
+  const [selectVal, setSelectVal] = useState(currDate.getFullYear());
+
+  console.log(currDate, "-------------------");
+
   return (
     <div className="App">
       <section id="calendar-section" className="section">
         <div className="calendar-header">
           <div className="logo">eCalendar</div>
-          <div className="current-year">{currDate.getFullYear()}</div>
+          <div className="current-year">
+            {
+              <select
+                value={`${currDate.getFullYear()}`}
+                onChange={(e) =>
+                  setCurrDate((prev) => {
+                    console.log(
+                      Number(e.target.value),
+                      prev.getMonth(),
+                      prev.getDate()
+                    );
+                    return new Date(
+                      Number(e.target.value),
+                      prev.getMonth(),
+                      prev.getDate()
+                    );
+                  })
+                }
+              >
+                {Array(200)
+                  .fill(0)
+                  .map((_, index) => (
+                    <option value={`${1900 + index}`}>{1900 + index}</option>
+                  ))}
+              </select>
+            }
+          </div>
         </div>
         <div className="calendar-months">
           <span onClick={() => onPrev()}>
@@ -87,7 +131,13 @@ function App() {
           </button>
         </div>
       </section>
-      <section id="eventList-section" className="section">
+      <section
+        id="eventList-section"
+        className="section"
+        style={{
+          background: monthColors[monthsOfYear[selectedDate.getMonth()]],
+        }}
+      >
         <Appointment date={selectedDate} />
       </section>
     </div>

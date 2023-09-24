@@ -1,26 +1,29 @@
-.addMeetingForm {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border: 1px solid var(--grey);
-  padding: 20px 50px;
-  z-index: 999;
-  background-color: rgba(187, 187, 209, 0.825);
-  border-radius: 4px;
+.form--add-Meeting {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.addMeetingForm table {
-  border-collapse: collapse;
+.form--add-Meeting .form-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px 10px;
 }
 
-.addMeetingForm table td {
-  padding: 10px 20px;
+.form-cell:first-child {
+  padding: 0 10px;
+  min-width: 100px;
 }
 
-.addMeetingForm table td input,
-.addMeetingForm table td textarea,
-.addMeetingForm table td button {
+.form-cell input,
+.form-cell textarea {
   width: 100%;
-  height: 100%;
+}
+
+.form-cell:has(input, textarea) {
+  flex-grow: 1;
+}
+
+.required-input {
+  border: 1px solid var(--red);
 }

@@ -1,5 +1,32 @@
-.current-selected-date {
-  font-weight: bold;
+.calendar-table {
+  flex-grow: 1;
+  border-spacing: 5px;
+}
+
+.calendar-table th {
+  text-align: center;
+  width: 60px;
+  height: 70px;
+}
+
+.calendar-table td > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  min-width: 40px;
+  min-height: 40px;
+}
+
+.calendar-table td:hover {
+  background-color: var(--blue);
+  cursor: pointer;
+}
+
+.current-selected-date > div {
+  background-color: var(--blue);
+  color: white;
 }
 
 .other-month-date {
@@ -20,6 +47,15 @@
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background-color: black;
-  bottom: 10px;
+  background-color: var(--black);
+  bottom: 4px;
+}
+
+.calendar-table td:hover {
+  color: white;
+}
+
+.current-selected-date > div::after,
+.date-has-meeting > div:hover::after {
+  background-color: white;
 }

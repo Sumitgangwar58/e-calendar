@@ -1,7 +1,7 @@
 .meeting-card {
   border: 1px solid var(--grey);
   padding: 10px;
-  /* cursor: pointer; */
+  background-color: rgba(255, 255, 255, 0.251);
 }
 
 .meeting-card-header,
@@ -11,6 +11,10 @@
   justify-content: space-between;
   gap: 20px;
   font-size: 24px;
+}
+
+.meeting-card__title {
+  text-overflow: ellipsis;
 }
 
 .meeting-card .meeting-card-body {
