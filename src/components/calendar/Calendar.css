@@ -18,17 +18,13 @@
 }
 
 .calendar-table td:hover {
-  background-color: var(--blue);
+  background-color: rgba(255, 255, 255, 0.5);
   cursor: pointer;
 }
 
 .current-selected-date {
-  background-color: var(--darkBlue);
-  color: white;
-}
-
-.current-selected-date > div {
-  color: white;
+  background-color: var(--darkBlue) !important;
+  color: white !important;
 }
 
 .other-month-date {
@@ -53,12 +49,7 @@
   bottom: 4px;
 }
 
-.calendar-table td:hover {
-  color: white;
-}
-
-.current-selected-date > div::after,
-.date-has-meeting > div:hover::after {
+.current-selected-date > div::after {
   background-color: white;
 }
 
