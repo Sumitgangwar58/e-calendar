@@ -1,0 +1,29 @@
+.form--add-Meeting {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form--add-Meeting .form-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px 10px;
+}
+
+.form-cell:first-child {
+  padding: 0 10px;
+  min-width: 100px;
+}
+
+.form-cell input,
+.form-cell textarea {
+  width: 100%;
+}
+
+.form-cell:has(input, textarea) {
+  flex-grow: 1;
+}
+
+.required-input {
+  border: 1px solid var(--red);
+}

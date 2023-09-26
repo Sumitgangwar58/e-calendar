@@ -56,14 +56,9 @@ const Appointment = ({ date }: AppointmentI) => {
     <div className="appointment-container">
       <div className="user-setup">
         {user ? (
-          <span title="logout" onClick={() => addUser(null)}>
-            {user}
-          </span>
+          <span onClick={() => addUser(null)}>{user}</span>
         ) : (
-          <button
-            title="Log In"
-            onClick={() => setAddUserForm((prev) => !prev)}
-          >
+          <button onClick={() => setAddUserForm((prev) => !prev)}>
             Sign In
           </button>
         )}
@@ -111,8 +106,8 @@ const Appointment = ({ date }: AppointmentI) => {
                 type="text"
               />
               <p>
-                <span className="required-star">*</span>This will allow to use
-                your browser local storage to store your data
+                This will allow to use your local browser storege to store your
+                data
               </p>
             </label>
             <button

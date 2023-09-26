@@ -7,6 +7,7 @@ interface AddMeetingFormI {
   onChange: (newValue: ValueI) => void;
   open: boolean;
   onClose: () => void;
+  title?: string;
 }
 
 export interface ValueI {
@@ -25,6 +26,7 @@ const AddMeetingForm = ({
   onChange,
   onClose,
   open,
+  title = "Add Appointment",
 }: AddMeetingFormI) => {
   const [formValue, setFormValue] = useState<ValueI>({
     title: "",
@@ -69,103 +71,144 @@ const AddMeetingForm = ({
     }
   };
 
+  const resetForm = () => [
+    setFormValue({
+      title: "",
+      startDate: "",
+      endDate: "",
+      timeBegins: "",
+      timeEnds: "",
+      people: "",
+      location: "",
+      description: "",
+    }),
+  ];
+
   useEffect(() => {
     if (!value) return;
     setFormValue({ ...value });
   }, [value]);
 
-  const formMarkup = (
-    <div className="form--add-Meeting">
-      <div className="form-row">
-        <div className="form-cell">Title:</div>
-        <div className={`form-cell`}>
-          <input
-            className={` ${requiredField.title ? "required-input" : ""}`}
-            type="text"
-            value={formValue.title}
-            onChange={(e) => handelChange(e.target.value, "title")}
-          />
-        </div>
-      </div>
-      <div className="form-row">
-        <div className="form-cell">Start Date:</div>
-        <div className="form-cell">
-          <input
-            type="date"
-            value={formValue.startDate}
-            onChange={(e) => handelChange(e.target.value, "startDate")}
-          />
-        </div>
-        <div className="form-cell">End Date:</div>
-        <div className="form-cell">
-          <input
-            type="date"
-            value={formValue.endDate}
-            onChange={(e) => handelChange(e.target.value, "endDate")}
-          />
-        </div>
-      </div>
-      <div className="form-row">
-        <div className="form-cell">Begins:</div>
-        <div className="form-cell">
-          <input
-            type="time"
-            className={` ${requiredField.timeBegins ? "required-input" : ""}`}
-            value={formValue.timeBegins}
-            onChange={(e) => handelChange(e.target.value, "timeBegins")}
-          />
-        </div>
-        <div className="form-cell">Ends:</div>
-        <div className="form-cell">
-          <input
-            type="time"
-            value={formValue.timeEnds}
-            onChange={(e) => handelChange(e.target.value, "timeEnds")}
-          />
-        </div>
-      </div>
-      <div className="form-row">
-        <div className="form-cell">People:</div>
-        <div className="form-cell">
-          <input
-            type="text"
-            value={formValue.people}
-            onChange={(e) => handelChange(e.target.value, "people")}
-          />
-        </div>
-      </div>
-      <div className="form-row">
-        <div className="form-cell">Location:</div>
-        <div className="form-cell">
-          <input
-            type="text"
-            value={formValue.location}
-            onChange={(e) => handelChange(e.target.value, "location")}
-          />
-        </div>
-      </div>
-      <div className="form-row">
-        <div className="form-cell">Description:</div>
-        <div className="form-cell">
-          <textarea
-            value={formValue.description}
-            onChange={(e) => handelChange(e.target.value, "description")}
-          />
-        </div>
-      </div>
+  useEffect(() => {
+    return () => {
+      setRequiredField({
+        title: false,
+        timeBegins: false,
+      });
+      resetForm();
+    };
+  }, []);
+
+  const newFormMarkup = (
+    <div className="form--add-meeting">
+      <label className="title" htmlFor={"title"}>
+        Title
+        {title === "Add Appointment" ? (
+          <span className="required-star">*</span>
+        ) : (
+          ""
+        )}
+      </label>
+      <input
+        id="title"
+        className={`${requiredField.title ? "required-input" : ""}`}
+        type="text"
+        value={formValue.title}
+        onChange={(e) => handelChange(e.target.value, "title")}
+      />
+
+      <label htmlFor={"start-date"} className="start-date">
+        Start Date :
+      </label>
+      <input
+        type="date"
+        id="start-date"
+        value={formValue.startDate}
+        onChange={(e) => handelChange(e.target.value, "startDate")}
+      />
+
+      <label htmlFor={"end-date"} className="end-date">
+        End Date :
+      </label>
+      <input
+        type="date"
+        id="end-date"
+        value={formValue.startDate}
+        onChange={(e) => handelChange(e.target.value, "endDate")}
+      />
+
+      <label htmlFor="time-begins" className="time-begins">
+        Begins
+        {title === "Add Appointment" ? (
+          <span className="required-star">*</span>
+        ) : (
+          ""
+        )}{" "}
+        :
+      </label>
+      <input
+        type="time"
+        id="time-begins"
+        className={` ${requiredField.timeBegins ? "required-input" : ""}`}
+        value={formValue.timeBegins}
+        onChange={(e) => handelChange(e.target.value, "timeBegins")}
+      />
+
+      <label htmlFor="time-ends" className="time-ends">
+        Ends :
+      </label>
+      <input
+        type="time"
+        id="time-ends"
+        value={formValue.timeBegins}
+        onChange={(e) => handelChange(e.target.value, "timeEnds")}
+      />
+
+      <label htmlFor="people" className="people">
+        People :
+      </label>
+      <input
+        type="text"
+        id="people"
+        value={formValue.people}
+        onChange={(e) => handelChange(e.target.value, "people")}
+      />
+
+      <label htmlFor="location" className="location">
+        Location :
+      </label>
+      <input
+        id="location"
+        type="text"
+        value={formValue.location}
+        onChange={(e) => handelChange(e.target.value, "location")}
+      />
+
+      <label htmlFor="description" className="description">
+        Description :
+      </label>
+      <textarea
+        id="description"
+        value={formValue.description}
+        onChange={(e) => handelChange(e.target.value, "description")}
+      />
+      <button onClick={onSubmit}>Submit</button>
     </div>
   );
 
   return (
     <Modal
+      title={title}
       open={open}
-      onClose={onClose}
-      content={
-        <>
-          {formMarkup}
-          <button onClick={onSubmit}>Submit</button>
-        </>
-      }
+      onClose={() => {
+        setRequiredField({
+          title: false,
+          timeBegins: false,
+        });
+        resetForm();
+        onClose();
+      }}
+      content={newFormMarkup}
     />
   );
 };
