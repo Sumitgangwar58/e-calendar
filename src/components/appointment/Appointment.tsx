@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import "./Appointment.css";
 import AddMeetingForm, { ValueI } from "./AddMeetingForm/AddMeetingForm";
 import { dataContext } from "../../api/DataContext";
@@ -40,7 +40,7 @@ const formatDate = (date: Date) => {
 const Appointment = ({ date }: AppointmentI) => {
   const [addUserForm, setAddUserForm] = useState(false);
   const [formOpen, setFormOpen] = useState(false);
-  const [formValue, setFormValue] = useState<ValueI>();
+  const [formValue] = useState<ValueI>();
   const { data, dispatch, user, addUser } = useContext(dataContext);
 
   const [userName, setUserName] = useState("");
@@ -82,7 +82,9 @@ const Appointment = ({ date }: AppointmentI) => {
       <div className="appointment-list">
         {data && data[formatDate(date)]
           ? data[formatDate(date)].map((item, index) => (
-              <MeetingCard index={index} date={date} data={item} />
+              <React.Fragment key={index}>
+                <MeetingCard index={index} date={date} data={item} />
+              </React.Fragment>
             ))
           : "Sorry no Meetings...."}
       </div>

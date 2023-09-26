@@ -42,7 +42,6 @@
   border-radius: 5px;
   color: var(--grey);
   cursor: pointer;
-  /* padding: 2px 4px; */
 }
 .meeting-card-action-button button:hover {
   color: black;
