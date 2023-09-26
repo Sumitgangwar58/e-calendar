@@ -16,7 +16,7 @@ npm install
 npm start
 ```
 
-3. Run the app
+3. Build the app
 
 ```bash
 npm run build
