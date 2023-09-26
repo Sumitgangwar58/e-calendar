@@ -1,5 +1,7 @@
 # e-calendar
 
+Here You can add your meetings according to date and can edit and delete your meeting
+
 I created this app using npx create-react-app
 
 1. Install necessary dependencies
@@ -12,6 +14,12 @@ npm install
 
 ```bash
 npm start
+```
+
+3. Run the app
+
+```bash
+npm run build
 ```
 
 #deploy-url
