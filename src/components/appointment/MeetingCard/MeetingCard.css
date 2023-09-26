@@ -1,7 +1,7 @@
 .meeting-card {
   border: 1px solid var(--grey);
   padding: 10px;
-  /* cursor: pointer; */
+  background-color: rgba(255, 255, 255, 0.251);
 }
 
 .meeting-card-header,
@@ -10,7 +10,20 @@
   display: flex;
   justify-content: space-between;
   gap: 20px;
-  font-size: 24px;
+  font-size: 22px;
+}
+
+.meeting-card__title {
+  text-wrap: wrap;
+  word-break: break-word;
+}
+
+.meeting-card-action-button {
+  gap: 5px;
+}
+
+.meeting-card-action-button button:first-child {
+  margin-right: 10px;
 }
 
 .meeting-card .meeting-card-body {
@@ -37,4 +50,54 @@
 
 .meeting-card-action-button .delete-button:hover {
   color: rgb(254, 42, 42);
+}
+
+.view-table {
+  width: 100%;
+  border-spacing: 0;
+  border-radius: 5px;
+}
+
+.view-table td {
+  background-color: rgba(255, 255, 255, 0.4);
+  border-bottom: 1px solid blue;
+  border-radius: 0;
+  padding: 10px;
+}
+
+.delete-modal-body {
+  background-color: rgba(255, 255, 255, 0.4);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.action-button {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: end;
+  margin-top: 20px;
+}
+
+.action-button > button:last-child,
+.delete-close-button {
+  background-color: transparent;
+  border-radius: 6px;
+  padding: 10px;
+  border: 1px solid var(--red);
+  cursor: pointer;
+}
+
+.action-button > button:last-child {
+  background-color: var(--red);
+  color: white;
+}
+
+.delete-close-button {
+  border: 1px solid green;
+}
+
+.delete-close-button {
+  background-color: green;
+  color: white;
 }

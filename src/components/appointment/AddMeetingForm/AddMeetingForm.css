@@ -1,26 +1,108 @@
-.addMeetingForm {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border: 1px solid var(--grey);
-  padding: 20px 50px;
-  z-index: 999;
-  background-color: rgba(187, 187, 209, 0.825);
-  border-radius: 4px;
+.form--add-meeting {
+  padding: 0 10px;
+  align-items: center;
+  display: grid;
+  gap: 10px;
+  grid-template-areas:
+    "title title-input title-input title-input"
+    "start-date start-date-input end-date end-date-input"
+    "time-begins time-begins-input time-ends time-ends-input"
+    "people people-input people-input people-input"
+    "location location-input location-input location-input"
+    "description description-input description-input description-input"
+    "submit-button submit-button submit-button submit-button";
 }
 
-.addMeetingForm table {
-  border-collapse: collapse;
+.form--add-meeting input:not(.required-input) {
+  border: 1px solid transparent;
 }
 
-.addMeetingForm table td {
-  padding: 10px 20px;
+.form--add-meeting label {
+  text-wrap: nowrap;
 }
 
-.addMeetingForm table td input,
-.addMeetingForm table td textarea,
-.addMeetingForm table td button {
+.form--add-meeting button {
+  grid-area: submit-button;
+  margin-top: 10px;
+  padding: 5px;
+}
+
+.title {
+  grid-area: title;
+}
+#title {
+  grid-area: title-input;
+}
+
+.start-date {
+  grid-area: start-date;
+}
+#start-date {
+  grid-area: start-date-input;
+}
+
+.end-date {
+  grid-area: end-date;
+}
+#end-date {
+  grid-area: end-date-input;
+}
+
+.time-begins {
+  grid-area: time-begins;
+}
+#time-begins {
+  grid-area: time-begins-input;
+}
+
+.time-ends {
+  grid-area: time-ends;
+}
+#time-ends {
+  grid-area: time-ends-input;
+}
+
+.people {
+  grid-area: people;
+}
+#people {
+  grid-area: people-input;
+}
+
+.location {
+  grid-area: location;
+}
+#location {
+  grid-area: location-input;
+}
+
+.description {
+  grid-area: description;
+}
+#description {
+  grid-area: description-input;
+}
+
+.required-input {
+  border: 4px solid var(--red) !important;
+  padding: 6px 20px;
+}
+
+.form--add-meeting input {
   width: 100%;
-  height: 100%;
+}
+
+@media screen and (width < 768px) {
+  .form--add-meeting {
+    grid-template-areas:
+      "title title-input title-input"
+      "start-date start-date-input start-date-input"
+      "end-date end-date-input end-date-input"
+      "time-begins time-begins-input time-begins-input"
+      "time-ends time-ends-input time-ends-input"
+      "people people-input people-input"
+      "location location-input location-input"
+      "description description-input description-input"
+      "submit-button submit-button submit-button";
+  }
 }

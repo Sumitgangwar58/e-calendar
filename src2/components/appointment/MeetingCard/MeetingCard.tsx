@@ -13,8 +13,8 @@ interface MeetingCardI {
 
 const MeetingCard = ({ data, date, index }: MeetingCardI) => {
   const [modalOpen, setModalOpen] = useState(false);
+
   const [openView, setOpenView] = useState(false);
-  const [deleteModal, setDeleteModal] = useState(false);
 
   const { dispatch } = useContext(dataContext);
 
@@ -29,10 +29,6 @@ const MeetingCard = ({ data, date, index }: MeetingCardI) => {
     });
   };
 
-  const openDeleteModal = () => {
-    setDeleteModal(true);
-  };
-
   const deleteAppointment = () => {
     dispatch({
       type: "Delete",
@@ -42,17 +38,6 @@ const MeetingCard = ({ data, date, index }: MeetingCardI) => {
       },
     });
   };
-
-  const viewTable = (
-    <table className="view-table">
-      {Object.entries(data).map((item) => (
-        <tr>
-          <td>{item[0]}</td>
-          <td>{item[1]}</td>
-        </tr>
-      ))}
-    </table>
-  );
 
   return (
     <div className="meeting-card">
@@ -74,7 +59,7 @@ const MeetingCard = ({ data, date, index }: MeetingCardI) => {
           >
             <Edit2 />
           </button>
-          <button className="delete-button" onClick={openDeleteModal}>
+          <button className="delete-button" onClick={deleteAppointment}>
             <Trash2 />
           </button>
         </div>
@@ -92,43 +77,22 @@ const MeetingCard = ({ data, date, index }: MeetingCardI) => {
       <AddMeetingForm
         onClose={() => setModalOpen(false)}
         open={modalOpen}
-        title={"Edit Appointment"}
         value={data}
         onChange={handelChange}
       />
 
       <Modal
         open={openView}
-        title="View Details"
         onClose={() => setOpenView(false)}
-        content={viewTable}
-      />
-
-      <Modal
-        open={deleteModal}
-        onClose={() => setDeleteModal(false)}
-        title="Delete Appointment"
         content={
-          <div className="delete-modal-body">
-            <p>Are You Sure Want to Delete This </p>
-            {viewTable}
-            <div className="action-button">
-              <button
-                className="delete-close-button"
-                onClick={() => setDeleteModal(false)}
-              >
-                Close
-              </button>
-              <button
-                onClick={() => {
-                  setDeleteModal(false);
-                  deleteAppointment();
-                }}
-              >
-                Delete
-              </button>
-            </div>
-          </div>
+          <table>
+            {Object.entries(data).map((item) => (
+              <tr>
+                <td>{item[0]}</td>
+                <td>{item[1]}</td>
+              </tr>
+            ))}
+          </table>
         }
       />
     </div>

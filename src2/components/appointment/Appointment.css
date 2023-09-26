@@ -3,6 +3,7 @@
   flex-direction: column;
   gap: 20px;
   height: 100%;
+  padding-left: 40px;
 }
 
 .date-view {
@@ -29,32 +30,37 @@
 
 .appointment-list {
   flex-basis: 100%;
+  position: relative;
+  margin-left: 40px;
   min-height: 200px;
+  max-height: 100%;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   padding: 10px;
-  overflow-y: auto;
 }
 
-.add-meeting-button,
-.form--add-meeting button {
+.appointment-list::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 2px;
+  background: rgba(0, 0, 0, 0.24);
+  left: -40px;
+  top: 0;
+}
+
+.add-meeting-button {
   width: fit-content;
   padding: 10px 20px;
   background-color: rgba(29, 14, 238, 0.679);
   color: white;
   outline: none;
   border: 0;
-  cursor: pointer;
 }
 
-.form--add-meeting button {
-  width: 100%;
-}
-
-.add-meeting-button:active,
-.form--add-meeting button:active {
+.add-meeting-button:active {
   background-color: rgba(29, 14, 238, 1);
 }
 
@@ -100,18 +106,4 @@
 .add-user-form p {
   margin: 0;
   font-weight: 500;
-}
-
-.add-user-form button {
-  background-color: rgba(255, 255, 255, 0.5);
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  border: 1px solid green;
-  border-radius: 5px;
-}
-
-.add-user-form button:hover {
-  background-color: green;
-  color: white;
 }

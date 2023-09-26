@@ -5,6 +5,8 @@
 
 .calendar-table th {
   text-align: center;
+  width: 60px;
+  height: 70px;
 }
 
 .calendar-table td > div {
@@ -18,13 +20,13 @@
 }
 
 .calendar-table td:hover {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: var(--blue);
   cursor: pointer;
 }
 
-.current-selected-date {
-  background-color: var(--darkBlue) !important;
-  color: white !important;
+.current-selected-date > div {
+  background-color: var(--blue);
+  color: white;
 }
 
 .other-month-date {
@@ -49,13 +51,11 @@
   bottom: 4px;
 }
 
-.current-selected-date > div::after {
-  background-color: white;
+.calendar-table td:hover {
+  color: white;
 }
 
-@media screen and (width < 763px) {
-  .calendar-table td > div {
-    min-width: 30px;
-    min-height: 30px;
-  }
+.current-selected-date > div::after,
+.date-has-meeting > div:hover::after {
+  background-color: white;
 }
