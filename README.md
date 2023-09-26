@@ -9,6 +9,11 @@ npm install
 ```
 
 2. Run the app
+
 ```bash
 npm start
 ```
+
+#deploy-url
+
+https://65130d3872744b008e799854--sprightly-lolly-c81395.netlify.app/
