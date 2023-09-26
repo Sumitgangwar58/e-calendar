@@ -1,10 +1,4 @@
-import React, {
-  Dispatch,
-  createContext,
-  useEffect,
-  useReducer,
-  useState,
-} from "react";
+import React, { Dispatch, createContext, useReducer, useState } from "react";
 import { ValueI } from "../components/appointment/AddMeetingForm/AddMeetingForm";
 import { ActionI, getReducer } from "./DataReducer";
 

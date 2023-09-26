@@ -69,10 +69,6 @@ function App() {
     setSelectedDate(date);
   };
 
-  const [selectVal, setSelectVal] = useState(currDate.getFullYear());
-
-  console.log(currDate, "-------------------");
-
   return (
     <div className="App">
       <section id="calendar-section" className="section">
@@ -100,7 +96,9 @@ function App() {
                 {Array(200)
                   .fill(0)
                   .map((_, index) => (
-                    <option value={`${1900 + index}`}>{1900 + index}</option>
+                    <option key={index} value={`${1900 + index}`}>
+                      {1900 + index}
+                    </option>
                   ))}
               </select>
             }

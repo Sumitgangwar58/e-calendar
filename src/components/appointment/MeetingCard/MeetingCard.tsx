@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import AddMeetingForm, { ValueI } from "../AddMeetingForm/AddMeetingForm";
-import { Delete, Edit, Edit2, Eye, Trash, Trash2 } from "react-feather";
+import { Edit2, Eye, Trash2 } from "react-feather";
 import "./MeetingCard.css";
 import { dataContext } from "../../../api/DataContext";
 import Modal from "../../modal/Modal";
@@ -79,16 +79,6 @@ const MeetingCard = ({ data, date, index }: MeetingCardI) => {
           </button>
         </div>
       </div>
-      {/* <div className="meeting-card-body">
-        <table>
-          {Object.entries(data).map((item) => (
-            <tr>
-              <td>{item[0]}</td>
-              <td>{item[1]}</td>
-            </tr>
-          ))}
-        </table>
-      </div> */}
       <AddMeetingForm
         onClose={() => setModalOpen(false)}
         open={modalOpen}
